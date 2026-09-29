@@ -1,0 +1,623 @@
+/* SlotKita — calm salon-inspired visual system: warm ivory, deep plum,
+   soft sage, restrained gold. Fonts have local fallbacks. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600&display=swap');
+
+:root {
+  --ivory: #f7f1e8;
+  --surface: #fffdf9;
+  --plum: #3e1f38;
+  --plum-dark: #2a1526;
+  --sage: #a9bfa8;
+  --sage-dark: #6f8a70;
+  --gold: #b98a3d;
+  --ink: #2b2320;
+  --ink-soft: #5c5148;
+  --border: #ddd0bd;
+  --error: #8a2a20;
+  --error-bg: #f8e9e6;
+  --radius: 10px;
+  --max-width: 980px;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 0;
+  overflow-x: hidden;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', ui-serif, serif;
+  line-height: 1.5;
+}
+
+/* Headings and interactive controls use the system UI stack for clarity. */
+h1, h2, h3, button, input, select, label, .date-tab, .service-option {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  background: var(--plum);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 0 0 var(--radius) 0;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+a {
+  color: var(--plum);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--plum-dark);
+}
+
+/* ---- header / footer ---- */
+
+.site-header {
+  background: var(--plum);
+  color: #f4ece7;
+  padding: 28px 0 24px;
+}
+
+.site-header .eyebrow {
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+.site-header h1 {
+  margin: 0 0 8px;
+  font-size: clamp(1.7rem, 6vw, 2.3rem);
+  letter-spacing: 0.01em;
+}
+
+.site-header .tagline {
+  margin: 0 0 14px;
+  max-width: 46em;
+  color: #e9ddd3;
+}
+
+.maker-cta {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #e9ddd3;
+}
+
+.maker-cta a {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.maker-cta a:hover {
+  color: #d8ab5c;
+}
+
+.portfolio-note {
+  color: #c9bcb0;
+  font-style: italic;
+}
+
+.site-footer {
+  padding: 28px 0 48px;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+}
+
+/* ---- layout panels ---- */
+
+main {
+  padding-bottom: 12px;
+}
+
+.panel {
+  padding: 28px 0;
+}
+
+.panel-primary {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-secondary {
+  background: var(--ivory);
+}
+
+.panel h2 {
+  margin: 0 0 6px;
+  color: var(--plum);
+  font-size: 1.35rem;
+}
+
+.section-note {
+  margin: 0 0 22px;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+/* ---- field groups ---- */
+
+.field-group {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 0 0 18px;
+  background: var(--surface);
+  min-width: 0;
+}
+
+.field-group legend,
+.field-group > label:first-child {
+  font-weight: 600;
+  color: var(--plum);
+  padding: 0 4px;
+}
+
+.field-error {
+  color: var(--error);
+  background: var(--error-bg);
+  border: 1px solid var(--error);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.86rem;
+  margin: 8px 0 0;
+}
+
+/* ---- service options ---- */
+
+.service-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.service-option {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.service-option:hover {
+  border-color: var(--sage-dark);
+}
+
+.service-option input[type='radio'] {
+  margin: 0 6px 0 0;
+  accent-color: var(--plum);
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.service-name {
+  font-weight: 600;
+}
+
+.service-meta {
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+}
+
+/* ---- weekly hours editor ---- */
+
+.hours-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.hours-row {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  min-width: 0;
+}
+
+.hours-row.is-closed {
+  background: #f2ede3;
+}
+
+.hours-day {
+  font-weight: 600;
+  min-width: 8.5em;
+}
+
+.hours-day-en {
+  font-weight: 400;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.closed-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.closed-toggle input {
+  accent-color: var(--plum);
+  width: 16px;
+  height: 16px;
+}
+
+.hours-row input[type='time'] {
+  min-width: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---- generic form controls ---- */
+
+input[type='time'],
+input[type='date'],
+input[type='number'],
+input[type='text'] {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 9px;
+  font-size: 0.95rem;
+  background: #fff;
+  color: var(--ink);
+  max-width: 100%;
+}
+
+label {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+/* ---- buffer field ---- */
+
+#buffer-input {
+  width: 6em;
+  margin-left: 8px;
+}
+
+/* ---- block form ---- */
+
+.block-form-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 10px 14px;
+  margin-top: 10px;
+}
+
+.block-form-row > label {
+  width: 100%;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.block-form-row > input {
+  flex: 1 1 130px;
+  min-width: 0;
+}
+
+.block-list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.block-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+}
+
+.block-list .block-empty {
+  color: var(--ink-soft);
+  font-style: italic;
+  border: none;
+  padding: 4px 2px;
+}
+
+/* ---- buttons ---- */
+
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 40px;
+}
+
+.btn-primary {
+  background: var(--plum);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--plum-dark);
+}
+
+.btn-secondary {
+  background: var(--sage);
+  color: var(--plum-dark);
+}
+
+.btn-secondary:hover {
+  background: var(--sage-dark);
+  color: #fff;
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--error);
+  border: 1px solid var(--error);
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  min-height: 32px;
+}
+
+.btn-danger:hover {
+  background: var(--error-bg);
+}
+
+/* ---- date navigation ---- */
+
+.date-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 20px;
+}
+
+.date-tab {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  min-width: 64px;
+}
+
+.date-tab-day {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+.date-tab-num {
+  font-weight: 700;
+  color: var(--plum);
+}
+
+.date-tab-tag {
+  font-size: 0.7rem;
+  color: var(--error);
+}
+
+.date-tab.is-selected {
+  background: var(--plum);
+  border-color: var(--plum);
+}
+
+.date-tab.is-selected .date-tab-day,
+.date-tab.is-selected .date-tab-num,
+.date-tab.is-selected .date-tab-tag {
+  color: #fff;
+}
+
+.date-tab.is-closed:not(.is-selected) {
+  background: #f2ede3;
+}
+
+/* ---- slot list ---- */
+
+#slots-status {
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+}
+
+.slot-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.slot-btn {
+  border: 1px solid var(--sage-dark);
+  background: var(--surface);
+  color: var(--plum-dark);
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 0.92rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.slot-btn:hover {
+  background: var(--sage);
+}
+
+.slot-btn.is-selected {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--plum-dark);
+}
+
+/* ---- summary card ---- */
+
+.summary-card {
+  border: 1px solid var(--gold);
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-top: 8px;
+}
+
+.summary-card h3 {
+  margin: 0 0 8px;
+  color: var(--plum);
+}
+
+.summary-card .disclaimer {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+}
+
+.summary-card textarea {
+  width: 100%;
+  min-height: 8.5em;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  font: inherit;
+  font-size: 0.88rem;
+  resize: vertical;
+  background: #fffefb;
+  color: var(--ink);
+}
+
+.summary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.status-msg {
+  min-height: 1.2em;
+  color: var(--sage-dark);
+  font-size: 0.88rem;
+  margin: 8px 0 0;
+}
+
+/* ---- focus visibility ---- */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ---- small screens (390px baseline) ---- */
+
+@media (max-width: 480px) {
+  .wrap {
+    padding: 0 14px;
+  }
+
+  .service-option {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hours-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .block-form-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .block-form-row > input,
+  .block-form-row > button {
+    width: 100%;
+    flex: none;
+  }
+
+  .date-tab {
+    min-width: 56px;
+    padding: 6px 8px;
+  }
+}
+
+/* Josiah Workbench: task-first scheduling, with a salon-specific plum accent. */
+:root{--ivory:#f7f5ed;--surface:#fffefa;--border:#d0d6c9;--radius:5px;--ink-soft:#4f6157}
+body{font-family:'DM Sans',Arial,sans-serif}
+h1,h2,h3,button,input,select,label,.date-tab,.service-option{font-family:'DM Sans',Arial,sans-serif}
+.site-header{padding:28px 0;background:var(--plum)}
+.header-layout{display:flex;justify-content:space-between;align-items:flex-end;gap:38px}
+.site-header h1{font:600 clamp(2.4rem,5vw,4rem)/1.05 'Fraunces',Georgia,serif;letter-spacing:-.045em;margin:8px 0 8px}
+.title-stop{color:#c9df95}
+.site-header .tagline{font-size:1rem;max-width:35rem;margin:0;color:#f2e9ed}
+.site-header .maker-cta{margin:0 0 4px;min-width:220px;font-size:.8rem;line-height:1.6;color:#e4d8e0;border-top:1px solid #977a8f;padding-top:13px}
+.site-header .maker-cta a{color:#e7edb1;text-underline-offset:4px}
+.panel{padding:40px 0 48px;scroll-margin-top:12px}
+.panel h2{font:600 clamp(1.8rem,3vw,2.45rem)/1.15 'Fraunces',Georgia,serif;letter-spacing:-.025em}
+.section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(230px,.55fr);gap:28px;align-items:end;margin-bottom:25px}
+.section-kicker{font-size:.75rem;color:#85523c;font-weight:700;letter-spacing:.11em;margin:0 0 7px}
+.section-head .section-note{margin:0;line-height:1.55}
+.field-group{border-radius:4px}
+.service-fieldset{margin-bottom:28px}
+.service-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.service-option{align-items:flex-start;min-height:72px;border-radius:3px;padding:12px}
+.service-option:has(input:checked){border-color:var(--plum);background:#f4edf1;box-shadow:inset 0 0 0 1px var(--plum)}
+.service-option input[type='radio']{margin-top:3px}
+.service-meta{font-size:.8rem;line-height:1.35}
+.date-nav{margin:12px 0 22px}
+.date-tab{min-height:64px;border-radius:3px}
+.slot-btn,.btn{min-height:44px;border-radius:3px}
+.btn-danger{min-height:44px}
+.slot-list{padding-bottom:14px;border-bottom:1px solid var(--border)}
+.adjust-link{display:inline-block;margin-top:8px;font-weight:700;font-size:.9rem;text-underline-offset:4px}
+.summary-card{border-radius:4px}
+@media(max-width:720px){.header-layout{display:block}.site-header .maker-cta{min-width:0;margin-top:25px}.section-head{display:block}.section-head .section-note{margin-top:9px}.service-options{grid-template-columns:1fr}.service-option{min-height:55px}.panel{padding:30px 0 36px}}

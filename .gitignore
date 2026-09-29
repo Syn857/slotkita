@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.wrangler/
+.env
+.env.*
+*.pem
+*.key
+*.log
+.DS_Store
+coverage/
+test-results/
+playwright-report/

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-MY">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SlotKita — appointment planning for Malaysian salons</title>
+<meta name="description" content="Plan salon appointment slots in MYT. Set opening hours, service duration and blocked times, then export a candidate calendar hold. Built by Josiah Peter James.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#decide">Skip to available slots</a>
+<header class="site-header">
+  <div class="wrap header-layout">
+    <div><p class="eyebrow">SALON SCHEDULING / MALAYSIA TIME</p><h1>SlotKita<span class="title-stop">.</span></h1><p class="tagline">Find a workable appointment window, then adjust the week around it.</p></div>
+    <p class="maker-cta">A working product by <strong>Josiah Peter James</strong><br><a href="#configure">Explore the sample schedule ↓</a></p>
+  </div>
+</header>
+<main>
+  <section id="decide" aria-labelledby="decide-heading" class="panel panel-primary">
+    <div class="wrap">
+      <div class="section-head"><div><p class="section-kicker">01 / FIND A TIME</p><h2 id="decide-heading">Find an opening</h2></div><p class="section-note">Explore the next 7 days in MYT. A selected time is a candidate, not a confirmed booking.</p></div>
+      <fieldset class="field-group service-fieldset"><legend>Choose a service</legend><div class="service-options" id="service-options" role="radiogroup" aria-label="Service"></div></fieldset>
+      <div class="date-nav" id="date-nav" role="tablist" aria-label="Choose a day"></div>
+      <div id="slots-status" aria-live="polite"></div>
+      <div id="slot-list" class="slot-list"></div>
+      <div id="selection-summary" class="summary-card" hidden aria-live="polite"></div>
+      <a class="adjust-link" href="#configure">Need different hours or a break? Adjust the week ↓</a>
+    </div>
+  </section>
+  <section id="configure" aria-labelledby="configure-heading" class="panel panel-secondary">
+    <div class="wrap">
+      <div class="section-head"><div><p class="section-kicker">02 / ADJUST THE WEEK</p><h2 id="configure-heading">Hours &amp; exceptions</h2></div><p class="section-note">The sample schedule is editable. Changes stay in this browser tab and update available times above.</p></div>
+      <fieldset class="field-group"><legend>Weekly opening hours (waktu operasi)</legend><div id="hours-editor" class="hours-grid"></div></fieldset>
+      <fieldset class="field-group"><legend>Buffer between appointments</legend><label for="buffer-input">Buffer minutes (setup/cleanup time reserved after each appointment)</label><input type="number" id="buffer-input" min="0" max="180" step="5" inputmode="numeric"><p id="buffer-error" class="field-error" role="alert" hidden></p></fieldset>
+      <fieldset class="field-group"><legend>Unavailable blocks (e.g. lunch break, existing appointment)</legend>
+        <form id="block-form" class="block-form" novalidate><div class="block-form-row">
+          <label for="block-date">Date</label><input type="date" id="block-date" required>
+          <label for="block-start">Start</label><input type="time" id="block-start" required>
+          <label for="block-end">End</label><input type="time" id="block-end" required>
+          <label for="block-label">Label (optional)</label><input type="text" id="block-label" maxlength="40" placeholder="e.g. Lunch">
+          <button type="submit" class="btn btn-secondary">Add block</button>
+        </div><p id="block-error" class="field-error" role="alert" hidden></p></form>
+        <ul id="block-list" class="block-list" aria-label="Current unavailable blocks"></ul>
+      </fieldset>
+      <a class="adjust-link" href="#decide">Back to available times ↑</a>
+    </div>
+  </section>
+</main>
+<footer class="site-footer"><div class="wrap"><p>Built by <a href="https://josiah-peter-james.pages.dev/">Josiah Peter James</a>. RM prices are sample configuration. This browser-only planner does not reserve appointments or send customer details; ask about adapting it to your booking system.</p></div></footer>
+<script src="slot-engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
