@@ -2,7 +2,7 @@
 
 A browser-only appointment planner for Malaysian salons, built with vanilla JavaScript, HTML and CSS by Josiah Peter James.
 
-**[Live demo](https://slotkita-20260928.pages.dev/)**
+**[Live demo](https://slotkita-20260928.pages.dev/)** · **[Full version (accounts, dashboard, live bookings)](https://slotkita.josiahpeter29.workers.dev/)**
 
 ![SlotKita sample scheduling interface](docs/slotkita.png)
 
